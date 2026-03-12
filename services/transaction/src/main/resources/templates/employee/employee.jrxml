@@ -18,7 +18,7 @@
       <variableExpression><![CDATA[$F{id}]]></variableExpression>
    </variable>
 
-<variable name="totalSalary" class="java.lang.Double" calculation="Sum">
+   <variable name="totalSalary" class="java.lang.Double" calculation="Sum">
       <variableExpression><![CDATA[$F{salary}]]></variableExpression>
    </variable>
 
