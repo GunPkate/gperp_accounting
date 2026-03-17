@@ -14,13 +14,13 @@ import com.gperp_acc.transaction.model.entity.Transaction;
 import com.gperp_acc.transaction.repo.TransactionRepository;
 
 import lombok.extern.slf4j.Slf4j;
-import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 @Service
-@Slf4j
 public class DocumentService {
 
     @Autowired
@@ -28,9 +28,8 @@ public class DocumentService {
 
     public byte[] employeeJasperReportInBytes(ReportTypeEnum reportType) throws Exception {
    
-        List<Transaction> data = transactionRepository.findAll();
-        // List<EmployeeDto> dataSource = transactionService.mapEntityListToDtoListForEmployee(data);
-        // 1. Create Required Parameters
+        List<Transaction> dataSource = transactionRepository.findAll();
+
         Map<String, Object> parameters = new HashMap<>();
         // FileInputStream leafBannerStream = new FileInputStream(ResourceUtils.getFile("classpath:reports/logo.jpg").getAbsolutePath());
         parameters.put("comanyName", "BLACK STAR TECHNOLOGIES");
@@ -39,16 +38,14 @@ public class DocumentService {
         // parameters.put("logo", leafBannerStream);
         parameters.put("createdBy","Satya Kaveti");
         
-        //2.Create DataSource
-        // JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(dataSource);
-        //3.Compile .jrmxl template, stored in JasperReport object
-        String template = "templates/employee/employee.jrxml";
+        JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(dataSource);
+
+        String template = "templates/employee/Blank_A4.jasper";
         String path = ResourceUtils.getFile("classpath:" + template).getAbsolutePath();
-        log.info( String.format("DocumentService %s", path) );
-        JasperReport jasperReport = JasperCompileManager.compileReport(path);
-        //4.Fill Report - by passing complied .jrxml object, paramters, datasource
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters);
-        //5.Export Report - by using JasperExportManager
+
+        JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(path);
+        
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, beanCollectionDataSource);
    
         return JasperReportsUtil.exportJasperReportBytes(jasperPrint, reportType); 
     }  

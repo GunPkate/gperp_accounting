@@ -52,10 +52,7 @@ public class JasperReportsUtil {
                 break;
             case DOC:
                 // Export to DOCX (RTF format)
-                JRRtfExporter docxExporter = new JRRtfExporter();
-                docxExporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-                docxExporter.setExporterOutput(new SimpleWriterExporterOutput(outputStream));
-                docxExporter.exportReport();
+                JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
                 break;
             default:
                 // Export to PDF by default
