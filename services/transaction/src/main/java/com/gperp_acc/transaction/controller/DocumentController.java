@@ -1,8 +1,5 @@
 package com.gperp_acc.transaction.controller;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -51,25 +48,4 @@ public class DocumentController {
         }
     } 
     
-    // @GetMapping("/jasper/emp24")
-    // public ResponseEntity<ReportTypeEnum> employeeJasperReport24(@RequestParam(name ="fileType", defaultValue="DOC") String fileType) throws Exception {
-
-    // ReportTypeEnum report = ReportTypeEnum.getReportTypeByCode(fileType);
-    //     log.info("Eum :"+report);
-    //     return ResponseEntity.ok().body(report);
-    // }
-    // // byte[] bytes = reportsService.employeeJasperReport24(fileType);
-    //     byte[] bytes = DocumentService.employeeJasperReportInBytes(fileType);
-    //     if (null != bytes) {
-    //         ByteArrayResource resource = new ByteArrayResource(bytes);
-    //         String fileName = "Employee24_JasperReport" + "_" + LocalDateTime.now() + report.getExtension();
-    //         return ResponseEntity.ok()
-    //                 .header(com.gperp_acc.transaction.HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
-    //                 .contentLength(resource.contentLength())
-    //                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
-    //                 .body(resource);
-    //     } else {
-    //         throw new Exception("File Download Failed");
-    //     }
-    // }
 }

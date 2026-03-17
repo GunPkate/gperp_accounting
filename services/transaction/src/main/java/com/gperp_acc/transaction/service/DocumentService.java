@@ -1,7 +1,5 @@
 package com.gperp_acc.transaction.service;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,28 +10,14 @@ import org.springframework.util.ResourceUtils;
 
 import com.gperp_acc.transaction.enumtypes.ReportTypeEnum;
 import com.gperp_acc.transaction.jasperutils.JasperReportsUtil;
-import com.gperp_acc.transaction.mapper.ReportTypeEnumMapper;
 import com.gperp_acc.transaction.model.entity.Transaction;
 import com.gperp_acc.transaction.repo.TransactionRepository;
 
 import lombok.extern.slf4j.Slf4j;
-import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.export.HtmlExporter;
-import net.sf.jasperreports.engine.export.JRCsvExporter;
-import net.sf.jasperreports.engine.export.JRRtfExporter;
-import net.sf.jasperreports.engine.export.JRXmlExporter;
-import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
-import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
-import net.sf.jasperreports.export.SimpleWriterExporterOutput;
-import net.sf.jasperreports.export.SimpleXmlExporterOutput;
 
 @Service
 @Slf4j
